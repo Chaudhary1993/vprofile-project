@@ -21,7 +21,7 @@ pipeline {
 	
     stages { 
         
-        stage('BUILD') {
+        stage('Build') {
             steps {
                 sh 'mvn clean install -DskipTests -s settings.xml'
             }
@@ -33,9 +33,15 @@ pipeline {
             }
         }
 
-        stage('TEST'){
+        stage('Test'){
             steps{
                 sh 'mvn test'
+            }
+        }
+
+        stage('Checkstyle Analysis'){
+            steps{
+               sh 'mvn Checkstyle:Checkstyle'
             }
         }
     }
